@@ -21,8 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:onClick="@{()->userDelailsLayout.backButtonclicked()}"
-            android:text="@string/backButton" />
+            android:onClick="@{()->homeLayout.backButtonclicked()}"
+            android:text="Back" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -35,8 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingTop="@dimen/small_padding"
-                android:text="@string/List_of_Users_text"
+                android:paddingTop="16dp"
+                android:text="List Of Text"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
