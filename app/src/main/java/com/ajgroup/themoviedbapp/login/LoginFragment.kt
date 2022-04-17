@@ -100,7 +100,7 @@ class LoginFragment : Fragment() {
     private fun navigateUserDetails() {
         Log.i("MYTAG","insidisplayUsersList")
         val editor: SharedPreferences.Editor = sharedPreferences!!.edit()
-        editor.putString("user_key", binding.userNameTextField.text.toString())
+        editor.putString("user_key", binding.etEmailTextfield.text.toString())
         editor.apply()
         val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
         NavHostFragment.findNavController(this).navigate(action)
