@@ -23,6 +23,11 @@
             android:gravity="center"
             android:onClick="@{()->homeLayout.backButtonclicked()}"
             android:text="Back" />
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome:"/>
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -57,7 +62,9 @@
                 tools:layout_conversion_absoluteHeight="537dp"
                 tools:layout_conversion_absoluteWidth="402dp"
                 tools:layout_editor_absoluteX="5dp"
-                tools:layout_editor_absoluteY="53dp">
+                tools:layout_editor_absoluteY="53dp"
+                tools:listitem="@layout/list_item"
+                >
 
             </androidx.recyclerview.widget.RecyclerView>
 
