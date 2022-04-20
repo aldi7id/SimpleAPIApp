@@ -17,7 +17,6 @@ import com.ajgroup.themoviedbapp.databinding.ProfileFragmentBinding
 import com.ajgroup.themoviedbapp.home.HomeFragmentDirections
 import com.ajgroup.themoviedbapp.home.HomeViewModel
 import com.ajgroup.themoviedbapp.home.HomeViewModelFactory
-import com.ajgroup.themoviedbapp.home.MyRecycleViewAdapter
 
 class ProfileFragment : Fragment() {
     private lateinit var profileViewModel: ProfileViewModel

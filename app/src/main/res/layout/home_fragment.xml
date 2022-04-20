@@ -55,7 +55,7 @@
                 tools:layout_editor_absoluteY="16dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/usersRecyclerView"
+                android:id="@+id/rvList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -63,7 +63,8 @@
                 tools:layout_conversion_absoluteWidth="402dp"
                 tools:layout_editor_absoluteX="5dp"
                 tools:layout_editor_absoluteY="53dp"
-                tools:listitem="@layout/list_item"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_content"
                 >
 
             </androidx.recyclerview.widget.RecyclerView>
