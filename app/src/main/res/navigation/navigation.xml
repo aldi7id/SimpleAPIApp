@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailMovieFragment"
+            app:destination="@id/detailMovieFragment" />/>
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -43,5 +46,18 @@
         <action
             android:id="@+id/action_profileFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailMovieFragment"
+        android:name="com.ajgroup.themoviedbapp.detail.DetailMovieFragment"
+        android:label="detail_movie_fragment"
+        tools:layout="@layout/detail_movie_fragment" >
+        <action
+            android:id="@+id/action_detailMovieFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="movieId"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

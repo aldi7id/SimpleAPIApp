@@ -13,6 +13,7 @@ import com.ajgroup.themoviedbapp.model.Result
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ajgroup.themoviedbapp.R
 import com.ajgroup.themoviedbapp.database.RegisterDatabase
@@ -30,6 +31,9 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: HomeFragmentBinding? = null
     private val binding get() = _binding!!
+    companion object{
+        val MOVIE_ID = "MOVIE_ID"
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -97,6 +101,10 @@ class HomeFragment : Fragment() {
     private fun showList(data: List<Result>) {
         val adapter  = HomeAdapter(object : HomeAdapter.OnClickListener {
             override fun onClickItem(data: Result) {
+                val id = data.id
+                val actionToDetailFragment = HomeFragmentDirections.actionHomeFragmentToDetailMovieFragment()
+                //actionToDetailFragment.actionId = id.toString().toInt()
+                findNavController().navigate(actionToDetailFragment)
 //                val intent = Intent(this@MainActivity, DetailMovieActivity::class.java)
 //                intent.putExtra(DetailMovieActivity.ID, data.id)
 //                startActivity(intent)
