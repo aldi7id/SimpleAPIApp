@@ -14,7 +14,7 @@ class DetailMovieViewModel : ViewModel() {
     val detailMovie: LiveData<DetailMovieResponse> = _detailMovieViewModel
 
     fun getDetailsMovie(movieId: Int){
-        ApiClient.instace.getIdMovies(500)
+        ApiClient.instace.getIdMovies(movieId)
             .enqueue(object : Callback<DetailMovieResponse> {
                 override fun onResponse(
                     call: Call<DetailMovieResponse>,

@@ -102,8 +102,9 @@ class HomeFragment : Fragment() {
         val adapter  = HomeAdapter(object : HomeAdapter.OnClickListener {
             override fun onClickItem(data: Result) {
                 val id = data.id
-                val actionToDetailFragment = HomeFragmentDirections.actionHomeFragmentToDetailMovieFragment()
-                //actionToDetailFragment.actionId = id.toString().toInt()
+                val actionToDetailFragment = HomeFragmentDirections.actionHomeFragmentToDetailMovieFragment(
+                    movieId = id.toString().toInt()
+                )
                 findNavController().navigate(actionToDetailFragment)
 //                val intent = Intent(this@MainActivity, DetailMovieActivity::class.java)
 //                intent.putExtra(DetailMovieActivity.ID, data.id)
