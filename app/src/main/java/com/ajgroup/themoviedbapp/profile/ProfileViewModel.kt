@@ -32,6 +32,7 @@ AndroidViewModel(application), Observable{
     fun backButtonclicked(){
         _navigateto.value = true
     }
+
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
         TODO("Not yet implemented")
     }

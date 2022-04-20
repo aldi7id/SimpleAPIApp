@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp"
+    android:background="#032541"
     >
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:background="#032541"
             >
             <ImageView
                 android:id="@+id/iv_header"
@@ -28,10 +30,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Judul"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 />
             <TextView
                 android:id="@+id/tv_price"
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Harganya"/>

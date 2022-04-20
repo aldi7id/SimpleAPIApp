@@ -12,18 +12,19 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ajgroup.themoviedbapp.R
 import com.ajgroup.themoviedbapp.database.RegisterDatabase
+import com.ajgroup.themoviedbapp.database.RegisterEntity
 import com.ajgroup.themoviedbapp.database.RegisterRepository
 import com.ajgroup.themoviedbapp.databinding.ProfileFragmentBinding
 import com.ajgroup.themoviedbapp.home.HomeFragmentDirections
 import com.ajgroup.themoviedbapp.home.HomeViewModel
 import com.ajgroup.themoviedbapp.home.HomeViewModelFactory
 
-class ProfileFragment : Fragment() {
+class ProfileFragment() : Fragment() {
     private lateinit var profileViewModel: ProfileViewModel
     private var _binding: ProfileFragmentBinding? = null
     private val binding get() = _binding!!
     companion object {
-        fun newInstance() = ProfileFragment()
+        //fun newInstance() = ProfileFragment()
     }
 
 
