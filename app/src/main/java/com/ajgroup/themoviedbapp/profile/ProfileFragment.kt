@@ -8,10 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.NavHostFragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ajgroup.themoviedbapp.R
 import com.ajgroup.themoviedbapp.database.RegisterDatabase
 import com.ajgroup.themoviedbapp.database.RegisterRepository
 import com.ajgroup.themoviedbapp.databinding.ProfileFragmentBinding
+import com.ajgroup.themoviedbapp.home.HomeFragmentDirections
+import com.ajgroup.themoviedbapp.home.HomeViewModel
+import com.ajgroup.themoviedbapp.home.HomeViewModelFactory
+import com.ajgroup.themoviedbapp.home.MyRecycleViewAdapter
 
 class ProfileFragment : Fragment() {
     private lateinit var profileViewModel: ProfileViewModel
@@ -21,7 +27,6 @@ class ProfileFragment : Fragment() {
         fun newInstance() = ProfileFragment()
     }
 
-    private lateinit var viewModel: ProfileViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,22 +39,43 @@ class ProfileFragment : Fragment() {
 
         val repository = RegisterRepository(dao)
 
-        val factory = ProfileViewModelFactory(repository,application)
-        profileViewModel = ViewModelProvider(this, factory).get(ProfileViewModel::class.java)
+        val factory = ProfileViewModelFactory(repository, application)
+
+        profileViewModel =
+            ViewModelProvider(this, factory).get(ProfileViewModel::class.java)
 
         binding.myViewModel = profileViewModel
+
         binding.lifecycleOwner = this
 
-        profileViewModel.userDetailsLiveData.observe(viewLifecycleOwner, Observer {
-            Log.i("MYTAG",it.toString()+"000000000000000000000000")
+        profileViewModel.navigateto.observe(viewLifecycleOwner, Observer { hasFinished ->
+            if (hasFinished == true) {
+                val action = HomeFragmentDirections.actionHomeFragmentToProfileFragment()
+                NavHostFragment.findNavController(this).navigate(action)
+                profileViewModel.doneNavigating()
+            }
         })
+
+        initRecyclerView()
+
         return binding.root
+
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-        // TODO: Use the ViewModel
+
+    private fun initRecyclerView() {
+        binding.usersRecyclerView.layoutManager = LinearLayoutManager(this.context)
+        displayUsersList()
     }
+
+
+    private fun displayUsersList() {
+        Log.i("MYTAG", "Inside ...UserDetails..Fragment")
+        profileViewModel.users.observe(viewLifecycleOwner, Observer {
+            binding.usersRecyclerView.adapter = ProfileAdapter(it)
+        })
+
+    }
+
 
 }
