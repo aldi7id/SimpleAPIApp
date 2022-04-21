@@ -7,7 +7,7 @@ import com.ajgroup.themoviedbapp.database.RegisterRepository
 import java.lang.IllegalArgumentException
 
 class ProfileViewModelFactory(
-    private val repository: RegisterRepository,
+    private val repository: ProfileRepository,
     private val application: Application
 ): ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

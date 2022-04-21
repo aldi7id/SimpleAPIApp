@@ -40,7 +40,7 @@ class HomeAdapter(private val onItemClick: OnClickListener) : RecyclerView.Adapt
     inner class ViewHolder(private val binding: ItemContentBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Result){
             binding.apply {
-                tvJudul.text = data.originalTitle
+                tvJudul.text = "Tittle: " + data.title
                 tvPrice.text = data.releaseDate
 
                 if (data.posterPath == null) {

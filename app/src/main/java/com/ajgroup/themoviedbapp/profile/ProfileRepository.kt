@@ -1,8 +1,10 @@
-package com.ajgroup.themoviedbapp.database
+package com.ajgroup.themoviedbapp.profile
 
 import android.util.Log
+import com.ajgroup.themoviedbapp.database.RegisterDatabaseDao
+import com.ajgroup.themoviedbapp.database.RegisterEntity
 
-class RegisterRepository(private val dao: RegisterDatabaseDao) {
+class ProfileRepository(private val dao: RegisterDatabaseDao) {
 
     val users = dao.getAllUsers()
     suspend fun insert(user: RegisterEntity) {
@@ -13,7 +15,7 @@ class RegisterRepository(private val dao: RegisterDatabaseDao) {
         return dao.updateUser(user)
     }
 
-    suspend fun getUserName(userName: String):RegisterEntity?{
+    suspend fun getUserName(userName: String): RegisterEntity?{
         Log.i("MYTAG", "inside Repository Getusers fun ")
         return dao.getUsername(userName)
     }

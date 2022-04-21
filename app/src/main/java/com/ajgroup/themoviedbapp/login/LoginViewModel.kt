@@ -45,6 +45,12 @@ class LoginViewModel(private val repository: RegisterRepository, application: Ap
 
     val errorToastInvalidPassword: LiveData<Boolean>
         get() = _errorToastInvalidPassword
+
+    private val _name = MutableLiveData<String>()
+
+    val name: LiveData<String>
+        get() = _name
+
     fun signUP() {
         _navigatetoRegister.value = true
     }
@@ -58,6 +64,7 @@ class LoginViewModel(private val repository: RegisterRepository, application: Ap
                     if(usersNames.passwrd == inputPassword.value){
                         inputUsername.value = null
                         inputPassword.value = null
+                        _name.value = "${usersNames.firstName} ${usersNames.lastName}"
                         _navigatetoUserDetails.value = true
                     }else{
                         _errorToastInvalidPassword.value = true
