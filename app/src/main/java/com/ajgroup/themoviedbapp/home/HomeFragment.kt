@@ -1,29 +1,22 @@
 package com.ajgroup.themoviedbapp.home
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.ajgroup.themoviedbapp.model.Result
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.ajgroup.themoviedbapp.R
 import com.ajgroup.themoviedbapp.database.RegisterDatabase
 import com.ajgroup.themoviedbapp.database.RegisterRepository
 import com.ajgroup.themoviedbapp.databinding.HomeFragmentBinding
 import com.ajgroup.themoviedbapp.model.GetMovieDiscovery
-import com.ajgroup.themoviedbapp.profile.ProfileViewModel
-import com.ajgroup.themoviedbapp.profile.ProfileViewModelFactory
 import com.ajgroup.themoviedbapp.service.ApiClient
 import retrofit2.Call
 import retrofit2.Response
@@ -35,14 +28,12 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val sharedPrefFile = "kotlinsharedpreference"
     var sharedPreferences: SharedPreferences? = null
-    companion object{
-        val MOVIE_ID = "MOVIE_ID"
-    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = HomeFragmentBinding.inflate(inflater,container,false)
 
         return binding.root
@@ -52,7 +43,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         sharedPreferences = requireContext().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         val userNameShared = sharedPreferences?.getString("name","")
-        binding.welcome.text = "Welcome : " + userNameShared
+        binding.welcome.text = getString(R.string.welcome).plus(userNameShared)
         val application = requireNotNull(this.activity).application
 
         val dao = RegisterDatabase.getInstance(application).registerDatabaseDao
@@ -67,13 +58,13 @@ class HomeFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        homeViewModel.navigateto.observe(viewLifecycleOwner, Observer { hasFinished ->
+        homeViewModel.navigateto.observe(viewLifecycleOwner) { hasFinished ->
             if (hasFinished == true) {
                 val action = HomeFragmentDirections.actionHomeFragmentToProfileFragment()
                 NavHostFragment.findNavController(this).navigate(action)
                 homeViewModel.doneNavigating()
             }
-        })
+        }
 
         fetchAllData()
     }

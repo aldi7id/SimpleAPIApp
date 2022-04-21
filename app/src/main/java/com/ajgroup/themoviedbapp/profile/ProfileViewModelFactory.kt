@@ -3,7 +3,6 @@ package com.ajgroup.themoviedbapp.profile
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ajgroup.themoviedbapp.database.RegisterRepository
 import java.lang.IllegalArgumentException
 
 class ProfileViewModelFactory(

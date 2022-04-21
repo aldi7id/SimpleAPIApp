@@ -27,4 +27,5 @@
     <string name="taglines">Tagline</string>
     <string name="deskripsi_movie">Deskripsi Movie</string>
     <string name="the_movie_db">The Movie DB</string>
+    <string name="welcome">\Welcome : \</string>
 </resources>

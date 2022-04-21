@@ -10,9 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
-import com.ajgroup.themoviedbapp.R
 import com.ajgroup.themoviedbapp.database.RegisterDatabase
 import com.ajgroup.themoviedbapp.database.RegisterRepository
 import com.ajgroup.themoviedbapp.databinding.LoginFragmentBinding
@@ -57,48 +55,45 @@ class LoginFragment : Fragment() {
         binding.myLoginViewModel = loginViewModel
         binding.lifecycleOwner = this
 
-        loginViewModel.navigatetoRegister.observe(viewLifecycleOwner, Observer { hasFinished->
+        loginViewModel.navigatetoRegister.observe(viewLifecycleOwner){ hasFinished->
             if (hasFinished == true){
                 Log.i("MYTAG","insidi observe")
                 displayUsersList()
                 loginViewModel.doneNavigatingRegiter()
             }
-        })
-        loginViewModel.errortoast.observe(viewLifecycleOwner, Observer { hasError->
+        }
+        loginViewModel.errortoast.observe(viewLifecycleOwner) { hasError->
             if(hasError==true){
                 Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
                 loginViewModel.donetoast()
             }
-        })
+        }
 
-        loginViewModel.errotoastUsername .observe(viewLifecycleOwner, Observer { hasError->
+        loginViewModel.errotoastUsername .observe(viewLifecycleOwner) { hasError->
             if(hasError==true){
                 Toast.makeText(requireContext(), "User doesnt exist,please Register!", Toast.LENGTH_SHORT).show()
                 loginViewModel.donetoastErrorUsername()
             }
-        })
+        }
 
-        loginViewModel.errorToastInvalidPassword.observe(viewLifecycleOwner, Observer { hasError->
+        loginViewModel.errorToastInvalidPassword.observe(viewLifecycleOwner) { hasError->
             if(hasError==true){
                 Toast.makeText(requireContext(), "Please check your Password", Toast.LENGTH_SHORT).show()
                 loginViewModel.donetoastInvalidPassword()
             }
-        })
+        }
 
-        loginViewModel.navigatetoUserDetails.observe(viewLifecycleOwner, Observer { hasFinished->
+        loginViewModel.navigatetoUserDetails.observe(viewLifecycleOwner) { hasFinished->
             if (hasFinished == true){
                 Log.i("MYTAG","insidi observe")
                 navigateUserDetails()
                 loginViewModel.doneNavigatingUserDetails()
             }
-        })
-
-
+        }
 
         return binding.root
     }
     private fun displayUsersList() {
-        Log.i("MYTAG","insidisplayUsersList")
         val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
         NavHostFragment.findNavController(this).navigate(action)
 

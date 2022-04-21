@@ -6,10 +6,6 @@ import com.ajgroup.themoviedbapp.database.RegisterEntity
 
 class ProfileRepository(private val dao: RegisterDatabaseDao) {
 
-    val users = dao.getAllUsers()
-    suspend fun insert(user: RegisterEntity) {
-        return dao.insert(user)
-    }
 
     suspend fun update(user: RegisterEntity) : Int {
         return dao.updateUser(user)
