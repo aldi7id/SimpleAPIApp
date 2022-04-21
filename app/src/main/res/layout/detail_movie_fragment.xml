@@ -6,22 +6,62 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
+    android:background="#055FA8"
     >
     <ImageView
         android:id="@+id/iv_header"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="500dp"
+        android:layout_height="281dp"
         android:src="@mipmap/ic_launcher"
         android:layout_gravity="center"
         />
     <TextView
+        android:layout_marginTop="10dp"
         android:id="@+id/tv_judul"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:fontFamily="@font/matcha"
+        android:textSize="20sp"
         android:text="Judul Movie"/>
+    <TextView
+        android:id="@+id/tv_genre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:fontFamily="@font/matcha"
+        android:textSize="18sp"
+        android:text="Genre"/>
+    <TextView
+        android:id="@+id/tv_release"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:fontFamily="@font/matcha"
+        android:textSize="18sp"
+        android:text="Release Date"/>
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:fontFamily="@font/matcha"
+        android:textSize="18sp"
+        android:text="Status"/>
+    <TextView
+        android:id="@+id/tv_tag_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:fontFamily="@font/matcha"
+        android:textSize="18sp"
+        android:text="Tagline"/>
     <TextView
         android:id="@+id/tv_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:fontFamily="@font/matcha"
+        android:textSize="18sp"
         android:text="Deskripsi Movie"/>
 </LinearLayout>

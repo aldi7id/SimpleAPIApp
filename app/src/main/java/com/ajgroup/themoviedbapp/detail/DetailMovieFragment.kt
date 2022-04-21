@@ -41,10 +41,16 @@ class DetailMovieFragment : Fragment() {
         val movieId = args.movieId
 
         detailMovieViewModel.detailMovie.observe(viewLifecycleOwner){
-            binding.tvJudul.text = it.originalTitle
-            binding.tvDesc.text = it.overview
+            binding.apply {
+                tvJudul.text = "Tittle:" + it.originalTitle
+                tvGenre.text = "Genre: " + it.genres[0].name + " or " + it.genres[1].name
+                tvRelease.text = "Release Date: " + it.releaseDate
+                tvTagLine.text = "Tagline: " + it.tagline
+                tvStatus.text = "Status: " + it.status
+                tvDesc.text = "Description:" +it.overview
+            }
             Glide.with(binding.root).load(IMAGE_BASE+it.backdropPath).into(iv_header)
-            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Success Load Detail", Toast.LENGTH_SHORT).show()
         }
         detailMovieViewModel.getDetailsMovie(movieId)
     }
