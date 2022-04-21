@@ -9,9 +9,6 @@ import com.ajgroup.themoviedbapp.database.RegisterRepository
 
 class HomeViewModel (private val repository: RegisterRepository, application: Application):AndroidViewModel(application){
 
-    init {
-        Log.i("MYTAG","inside_users_Lisrt_init")
-    }
 
     private val _navigateto = MutableLiveData<Boolean>()
 
