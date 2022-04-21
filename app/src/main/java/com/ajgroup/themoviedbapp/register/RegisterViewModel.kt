@@ -23,7 +23,7 @@ class RegisterViewModel(private val repository: RegisterRepository, application:
     }
 
 
-    private var userdata: String? = null
+    //private var userdata: String? = null
 
     var userDetailsLiveData = MutableLiveData<Array<RegisterEntity>>()
 
@@ -39,6 +39,9 @@ class RegisterViewModel(private val repository: RegisterRepository, application:
     @Bindable
     val inputPassword = MutableLiveData<String?>()
 
+    @Bindable
+    val inputRePassword = MutableLiveData<String?>()
+
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
@@ -53,10 +56,20 @@ class RegisterViewModel(private val repository: RegisterRepository, application:
     val errotoast: LiveData<Boolean>
         get() = _errorToast
 
+    private val _successToast = MutableLiveData<Boolean>()
+
+    val successtoast: LiveData<Boolean>
+        get() = _successToast
+
     private val _errorToastUsername = MutableLiveData<Boolean>()
 
     val errotoastUsername: LiveData<Boolean>
         get() = _errorToastUsername
+
+    private val _errorToastPassword = MutableLiveData<Boolean>()
+
+    val errotoastPassword: LiveData<Boolean>
+        get() = _errorToastPassword
 
 
     fun sumbitButton() {
@@ -67,33 +80,32 @@ class RegisterViewModel(private val repository: RegisterRepository, application:
             uiScope.launch {
 //            withContext(Dispatchers.IO) {
                 val usersNames = repository.getUserName(inputUsername.value!!)
-                Log.i("MYTAG", usersNames.toString() + "------------------")
                 if (usersNames != null) {
                     _errorToastUsername.value = true
-                    Log.i("MYTAG", "Inside if Not null")
-                } else {
-                    Log.i("MYTAG", userDetailsLiveData.value.toString() + "ASDFASDFASDFASDF")
-                    Log.i("MYTAG", "OK im in")
-                    val firstName = inputFirstName.value!!
-                    val lastName = inputLastName.value!!
-                    val email = inputUsername.value!!
-                    val password = inputPassword.value!!
-                    Log.i("MYTAG", "insidi Sumbit")
-                    insert(RegisterEntity(0, firstName, lastName, email, password))
-                    inputFirstName.value = null
-                    inputLastName.value = null
-                    inputUsername.value = null
-                    inputPassword.value = null
-                    _navigateto.value = true
+                }
+                when {
+                    inputPassword.value != inputRePassword.value -> {
+                        _errorToastPassword.value = true
+                    }
+                    else -> {
+                        val firstName = inputFirstName.value!!
+                        val lastName = inputLastName.value!!
+                        val email = inputUsername.value!!
+                        val password = inputPassword.value!!
+                        insert(RegisterEntity(0, firstName, lastName, email, password))
+                        inputFirstName.value = null
+                        inputLastName.value = null
+                        inputUsername.value = null
+                        inputPassword.value = null
+                        _successToast.value = true
+                        _navigateto.value = true
+                }
+
                 }
             }
         }
     }
 
-
-    override fun onCleared() {
-        super.onCleared()
-    }
 
     fun doneNavigating() {
         _navigateto.value = false
