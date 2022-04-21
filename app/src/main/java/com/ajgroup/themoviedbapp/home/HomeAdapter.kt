@@ -41,7 +41,9 @@ class HomeAdapter(private val onItemClick: OnClickListener) : RecyclerView.Adapt
         fun bind(data: Result){
             binding.apply {
                 tvJudul.text = "Tittle: " + data.title
-                tvPrice.text = data.releaseDate
+                tvRelease.text = "Release Date: " + data.releaseDate
+                tvPopularity.text = "Popularity: " + data.popularity.toString()
+                tvVote.text = "Vote Score: "+data.voteAverage.toString()
 
                 if (data.posterPath == null) {
                     Glide.with(binding.root).load(R.drawable.ic_launcher_background).into(ivHeader)
