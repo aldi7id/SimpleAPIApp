@@ -4,24 +4,17 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.ajgroup.themoviedbapp.R
 import com.ajgroup.themoviedbapp.database.RegisterDatabase
 import com.ajgroup.themoviedbapp.database.RegisterEntity
-import com.ajgroup.themoviedbapp.database.RegisterRepository
 import com.ajgroup.themoviedbapp.databinding.ProfileFragmentBinding
 import com.ajgroup.themoviedbapp.home.HomeFragmentDirections
-import com.ajgroup.themoviedbapp.home.HomeViewModel
-import com.ajgroup.themoviedbapp.home.HomeViewModelFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -39,7 +32,7 @@ class ProfileFragment() : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = ProfileFragmentBinding.inflate(inflater,container,false)
         val application = requireNotNull(this.activity).application
 
@@ -56,13 +49,13 @@ class ProfileFragment() : Fragment() {
 
         binding.lifecycleOwner = this
 
-        profileViewModel.navigateto.observe(viewLifecycleOwner, Observer { hasFinished ->
+        profileViewModel.navigateto.observe(viewLifecycleOwner) { hasFinished ->
             if (hasFinished == true) {
                 val action = HomeFragmentDirections.actionHomeFragmentToProfileFragment()
                 NavHostFragment.findNavController(this).navigate(action)
                 profileViewModel.doneNavigating()
             }
-        })
+        }
 
         //initRecyclerView()
 

@@ -100,8 +100,8 @@ class RegisterViewModel(private val repository: RegisterRepository, application:
                         _successToast.value = true
                         _navigateto.value = true
                 }
-
                 }
+
             }
         }
     }

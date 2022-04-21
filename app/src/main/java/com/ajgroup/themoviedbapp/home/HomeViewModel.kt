@@ -9,7 +9,6 @@ import com.ajgroup.themoviedbapp.database.RegisterRepository
 
 class HomeViewModel (private val repository: RegisterRepository, application: Application):AndroidViewModel(application){
 
-
     private val _navigateto = MutableLiveData<Boolean>()
 
     val navigateto: LiveData<Boolean>
