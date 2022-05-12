@@ -40,11 +40,6 @@ class LoginFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = LoginFragmentBinding.inflate(inflater, container,false)
-        //return binding.root
-//        val binding: FragmentLoginBinding = DataBindingUtil.inflate(
-//            inflater,
-//            R.layout.fragment_login, container, false
-//        )
         val application = requireNotNull(this.activity).application
 
         val dao = RegisterDatabase.getInstance(application).registerDatabaseDao

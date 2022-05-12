@@ -1,19 +1,16 @@
 package com.ajgroup.themoviedbapp.profile
 
 import android.app.Application
-import android.util.Log
 import androidx.databinding.Observable
 import androidx.lifecycle.*
 import com.ajgroup.themoviedbapp.database.RegisterEntity
+import com.ajgroup.themoviedbapp.database.RegisterRepository
 
-class ProfileViewModel (private val repository: ProfileRepository, application: Application) :
+class ProfileViewModel (private val repository: RegisterRepository, application: Application) :
 AndroidViewModel(application), Observable{
     private val _profileViewModel: MutableLiveData<RegisterEntity?> = MutableLiveData()
     val profileViewModel: LiveData<RegisterEntity?> = _profileViewModel
 
-    init {
-        Log.i("MYTAG","inside_users_Lisrt_init")
-    }
 
     suspend fun submitUpdate(user: RegisterEntity): Int {
         return repository.update(user)
@@ -30,6 +27,7 @@ AndroidViewModel(application), Observable{
     fun doneNavigating(){
         _navigateto.value=false
     }
+
 
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {

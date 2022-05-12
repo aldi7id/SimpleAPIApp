@@ -24,7 +24,6 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRegisterBinding.inflate(inflater,container,false)
-//
 
         val application = requireNotNull(this.activity).application
 

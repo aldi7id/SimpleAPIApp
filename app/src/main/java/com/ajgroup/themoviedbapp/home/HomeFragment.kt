@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.ajgroup.themoviedbapp.model.Result
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.ajgroup.themoviedbapp.R
@@ -84,10 +83,9 @@ class HomeFragment : Fragment() {
                    val code = response.code()
                    if (code == 200){
                        body?.results?.let { showList(it) }
-                       //binding.pbLoading.visibility = View.GONE
                        Toast.makeText(context, "Data Berhasil Di Load", Toast.LENGTH_SHORT).show()
                    } else{
-                       //binding.pbLoading.visibility = View.GONE
+                       Toast.makeText(context, "Data Gagal Di Load", Toast.LENGTH_SHORT).show()
                    }
                }
 
@@ -105,9 +103,6 @@ class HomeFragment : Fragment() {
                     movieId = id.toString().toInt()
                 )
                 findNavController().navigate(actionToDetailFragment)
-//                val intent = Intent(this@MainActivity, DetailMovieActivity::class.java)
-//                intent.putExtra(DetailMovieActivity.ID, data.id)
-//                startActivity(intent)
             }
         })
         adapter.submitData(data)
@@ -115,19 +110,5 @@ class HomeFragment : Fragment() {
     }
 
 
-//    private fun initRecyclerView() {
-//        binding.rvList.layoutManager = LinearLayoutManager(this.context)
-//        displayUsersList()
-//    }
-
-
-//    private fun displayUsersList(data: List<Result>) {
-//        Log.i("MYTAG", "Inside ...UserDetails..Fragment")
-//        binding.rvList.adapter = HomeAdapter()
-////        homeViewModel.users.observe(viewLifecycleOwner, Observer {
-////            binding.rvList.adapter = HomeAdapter(it)
-////        })
-//
-//    }
 
 }

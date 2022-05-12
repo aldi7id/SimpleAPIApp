@@ -2,6 +2,7 @@ package com.ajgroup.themoviedbapp.profile
 
 import android.content.Context
 import android.content.SharedPreferences
+
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,12 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import com.ajgroup.themoviedbapp.database.RegisterDatabase
 import com.ajgroup.themoviedbapp.database.RegisterEntity
+import com.ajgroup.themoviedbapp.database.RegisterRepository
 import com.ajgroup.themoviedbapp.databinding.ProfileFragmentBinding
 import com.ajgroup.themoviedbapp.home.HomeFragmentDirections
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -38,7 +42,7 @@ class ProfileFragment() : Fragment() {
 
         val dao = RegisterDatabase.getInstance(application).registerDatabaseDao
 
-        val repository = ProfileRepository(dao)
+        val repository = RegisterRepository(dao)
 
         val factory = ProfileViewModelFactory(repository, application)
 
@@ -56,8 +60,6 @@ class ProfileFragment() : Fragment() {
                 profileViewModel.doneNavigating()
             }
         }
-
-        //initRecyclerView()
 
         return binding.root
 
@@ -108,21 +110,4 @@ class ProfileFragment() : Fragment() {
             }
         }
     }
-
-
-//    private fun initRecyclerView() {
-//        binding.usersRecyclerView.layoutManager = LinearLayoutManager(this.context)
-//        displayUsersList()
-//    }
-
-
-//    private fun displayUsersList() {
-//        Log.i("MYTAG", "Inside ...UserDetails..Fragment")
-//        profileViewModel.users.observe(viewLifecycleOwner, Observer {
-//            binding.usersRecyclerView.adapter = ProfileAdapter(it)
-//        })
-//
-//    }
-
-
 }

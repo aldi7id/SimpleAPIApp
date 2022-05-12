@@ -2,7 +2,6 @@ package com.ajgroup.themoviedbapp.register
 
 import android.app.Application
 import android.util.Log
-import androidx.databinding.Bindable
 import androidx.databinding.Observable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -18,28 +17,22 @@ import kotlinx.coroutines.launch
 class RegisterViewModel(private val repository: RegisterRepository, application: Application) :
     AndroidViewModel(application), Observable {
 
-    init {
-        Log.i("MYTAG", "init")
-    }
-
-
-    //private var userdata: String? = null
 
     var userDetailsLiveData = MutableLiveData<Array<RegisterEntity>>()
 
-    @Bindable
+
     val inputFirstName = MutableLiveData<String?>()
 
-    @Bindable
+
     val inputLastName = MutableLiveData<String?>()
 
-    @Bindable
+
     val inputUsername = MutableLiveData<String?>()
 
-    @Bindable
+
     val inputPassword = MutableLiveData<String?>()
 
-    @Bindable
+
     val inputRePassword = MutableLiveData<String?>()
 
     private val viewModelJob = Job()
@@ -78,7 +71,6 @@ class RegisterViewModel(private val repository: RegisterRepository, application:
             _errorToast.value = true
         } else {
             uiScope.launch {
-//            withContext(Dispatchers.IO) {
                 val usersNames = repository.getUserName(inputUsername.value!!)
                 if (usersNames != null) {
                     _errorToastUsername.value = true
