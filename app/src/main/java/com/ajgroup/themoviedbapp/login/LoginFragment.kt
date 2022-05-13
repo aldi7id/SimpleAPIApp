@@ -51,7 +51,6 @@ class LoginFragment : Fragment() {
 
         loginViewModel.navigatetoRegister.observe(viewLifecycleOwner){ hasFinished->
             if (hasFinished == true){
-                Log.i("MYTAG","insidi observe")
                 displayUsersList()
                 loginViewModel.doneNavigatingRegiter()
             }
@@ -79,7 +78,6 @@ class LoginFragment : Fragment() {
 
         loginViewModel.navigatetoUserDetails.observe(viewLifecycleOwner) { hasFinished->
             if (hasFinished == true){
-                Log.i("MYTAG","insidi observe")
                 navigateUserDetails()
                 loginViewModel.doneNavigatingUserDetails()
             }

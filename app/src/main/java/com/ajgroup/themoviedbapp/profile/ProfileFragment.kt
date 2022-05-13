@@ -39,9 +39,7 @@ class ProfileFragment() : Fragment() {
     private val binding get() = _binding!!
     private var imageUri: Uri? = null
     private var selectedImage = false
-    companion object {
-        //fun newInstance() = ProfileFragment()
-    }
+
 
 
     override fun onCreateView(

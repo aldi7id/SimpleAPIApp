@@ -6,14 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.ajgroup.themoviedbapp.R
 import com.ajgroup.themoviedbapp.database.*
 import com.ajgroup.themoviedbapp.databinding.FavoriteFragmentBinding
-import com.ajgroup.themoviedbapp.home.HomeViewModel
-import com.ajgroup.themoviedbapp.home.HomeViewModelFactory
-import com.ajgroup.themoviedbapp.profile.ProfileViewModel
 
 class FavoriteFragment : Fragment() {
     private lateinit var favoriteViewModel: FavoriteViewModel
@@ -57,7 +52,7 @@ class FavoriteFragment : Fragment() {
 
         favoriteViewModel.getAllFavorites()
     }
-    private fun showFavoriteMovies(list: List<Favorite?>?) {
+    private fun showFavoriteMovies(list: List<FavoriteEntity?>?) {
         val adapter= FavoriteAdapter {
             val action = FavoriteFragmentDirections
                 .actionFavoriteFragmentToDetailMovieFragment(it.id!!)
