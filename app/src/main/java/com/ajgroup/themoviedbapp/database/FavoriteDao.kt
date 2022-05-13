@@ -4,15 +4,15 @@ import androidx.room.*
 
 @Dao
 interface FavoriteDao {
-    @Query("SELECT * FROM Favorite")
-    suspend fun readFavorites(): List<Favorite>
+    @Query("SELECT * FROM FavoriteEntity")
+    suspend fun readFavorites(): List<FavoriteEntity>
 
-    @Query("SELECT * FROM Favorite WHERE id=:id")
-    fun readFavoriteById(id: Int): Favorite?
+    @Query("SELECT * FROM FavoriteEntity WHERE id=:id")
+    fun readFavoriteById(id: Int): FavoriteEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertFavorite(favorite: Favorite):Long
+    fun insertFavorite(favorite: FavoriteEntity):Long
 
     @Delete
-    fun deleteFavorite(favorite: Favorite):Int
+    fun deleteFavorite(favorite: FavoriteEntity):Int
 }
