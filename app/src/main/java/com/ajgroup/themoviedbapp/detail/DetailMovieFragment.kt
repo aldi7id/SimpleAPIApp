@@ -31,6 +31,7 @@ class DetailMovieFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         detailMovieViewModel = ViewModelProvider(this).get(DetailMovieViewModel::class.java)
         val movieId = args.movieId
 

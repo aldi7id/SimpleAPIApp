@@ -65,6 +65,13 @@ class HomeFragment : Fragment() {
                 homeViewModel.doneNavigating()
             }
         }
+        homeViewModel.navigatetofavorite.observe(viewLifecycleOwner) { hasFinished ->
+            if (hasFinished == true) {
+                val action = HomeFragmentDirections.actionHomeFragmentToFavoriteFragment()
+                NavHostFragment.findNavController(this).navigate(action)
+                homeViewModel.doneNavigatingfavorite()
+            }
+        }
         homeViewModel.homeViewModel.observe(viewLifecycleOwner){
             binding.welcome.text = getString(R.string.welcome).plus(it?.firstName).plus(" ").plus(it?.lastName)
         }
