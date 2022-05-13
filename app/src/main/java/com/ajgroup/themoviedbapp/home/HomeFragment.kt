@@ -1,7 +1,5 @@
 package com.ajgroup.themoviedbapp.home
 
-import android.content.Context
-import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -30,8 +28,6 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: HomeFragmentBinding? = null
     private val binding get() = _binding!!
-    private val sharedPrefFile = "kotlinsharedpreference"
-    var sharedPreferences: SharedPreferences? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,8 +41,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedPreferences = requireContext().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        val userNameShared = sharedPreferences?.getString("name","")
+
 
 
         val application = requireNotNull(this.activity).application

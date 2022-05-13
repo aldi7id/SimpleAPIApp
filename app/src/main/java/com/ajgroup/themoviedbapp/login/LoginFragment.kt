@@ -20,16 +20,9 @@ class LoginFragment : Fragment() {
     private var _binding: LoginFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var loginViewModel: LoginViewModel
-//    private val sharedPrefFile = "kotlinsharedpreference"
-//    var sharedPreferences: SharedPreferences? = null
     var name = ""
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        sharedPreferences = requireContext().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-//        val userNameShared = sharedPreferences?.getString("user_key","")
-//        if (userNameShared != ""){
-//            navigateUserDetails()
-//        }
         loginViewModel.name.observe(viewLifecycleOwner){
             name = it
         }
@@ -100,11 +93,7 @@ class LoginFragment : Fragment() {
 
     }
     private fun navigateUserDetails() {
-        Log.i("MYTAG","insidisplayUsersList")
-//        val editor: SharedPreferences.Editor = sharedPreferences!!.edit()
-//        editor.putString("user_key", binding.etEmailTextfield.text.toString())
-//        editor.putString("name", name)
-//        editor.apply()
+
         loginViewModel.setEmailPreferences(binding.etEmailTextfield.text.toString())
         loginViewModel.setNamaPreferences(name)
         val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
