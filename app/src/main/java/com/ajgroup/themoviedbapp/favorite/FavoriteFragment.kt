@@ -8,23 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.ajgroup.themoviedbapp.database.*
+import com.ajgroup.themoviedbapp.database.entity.FavoriteEntity
 import com.ajgroup.themoviedbapp.databinding.FavoriteFragmentBinding
+import com.ajgroup.themoviedbapp.repository.FavoriteRepository
 
 class FavoriteFragment : Fragment() {
     private lateinit var favoriteViewModel: FavoriteViewModel
     private var _binding: FavoriteFragmentBinding? = null
     private val binding get() = _binding
 
-//    private val favoriteViewModel by viewModels<FavoriteViewModel> {
-//        FavoriteViewModelFactory(
-//            FavoriteRepository(
-//                RegisterDatabase.getInstance(requireContext())!!.favoriteDao
-//            )
-//        )
-//    }
 
-
-    private lateinit var viewModel: FavoriteViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

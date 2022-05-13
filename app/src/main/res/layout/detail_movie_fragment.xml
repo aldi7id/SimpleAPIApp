@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:fontFamily="@font/matcha"
+        android:fontFamily="@font/roboto"
         android:textSize="20sp"
         android:text="@string/judul_movie"/>
     <TextView
@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:fontFamily="@font/matcha"
+        android:fontFamily="@font/roboto"
         android:textSize="18sp"
         android:text="@string/genres"/>
     <TextView
@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:fontFamily="@font/matcha"
+        android:fontFamily="@font/roboto"
         android:textSize="18sp"
         android:text="@string/release_date"/>
     <TextView
@@ -62,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:fontFamily="@font/matcha"
+        android:fontFamily="@font/roboto"
         android:textSize="18sp"
         android:text="@string/statuss"/>
     <TextView
@@ -70,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:fontFamily="@font/matcha"
+        android:fontFamily="@font/roboto"
         android:textSize="18sp"
         android:text="@string/taglines"/>
     <TextView
@@ -78,7 +78,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:fontFamily="@font/matcha"
+        android:fontFamily="@font/roboto"
         android:textSize="18sp"
         android:text="@string/deskripsi_movie"/>
 

@@ -5,18 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.ajgroup.themoviedbapp.database.Favorite
+import com.ajgroup.themoviedbapp.database.entity.FavoriteEntity
 import com.ajgroup.themoviedbapp.databinding.ListFavoriteBinding
 import com.bumptech.glide.Glide
 
-class FavoriteAdapter(private val onClick:(Favorite)->Unit)
-    : ListAdapter<Favorite, FavoriteAdapter.ViewHolder>(FavoriteComparator()) {
+class FavoriteAdapter(private val onClick:(FavoriteEntity)->Unit)
+    : ListAdapter<FavoriteEntity, FavoriteAdapter.ViewHolder>(FavoriteComparator()) {
 
 
     class ViewHolder(private val binding: ListFavoriteBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(currentFavorite: Favorite,
-                 onClick: (Favorite) -> Unit){
+        fun bind(currentFavorite: FavoriteEntity,
+                 onClick: (FavoriteEntity) -> Unit){
 
             binding.apply {
                 Glide.with(binding.ivPoster)
@@ -34,12 +34,12 @@ class FavoriteAdapter(private val onClick:(Favorite)->Unit)
 
     }
 
-    class FavoriteComparator : DiffUtil.ItemCallback<Favorite>() {
-        override fun areItemsTheSame(oldItem: Favorite, newItem: Favorite): Boolean {
+    class FavoriteComparator : DiffUtil.ItemCallback<FavoriteEntity>() {
+        override fun areItemsTheSame(oldItem: FavoriteEntity, newItem: FavoriteEntity): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: Favorite, newItem: Favorite): Boolean {
+        override fun areContentsTheSame(oldItem: FavoriteEntity, newItem: FavoriteEntity): Boolean {
             return oldItem.hashCode() == newItem.hashCode()
         }
     }

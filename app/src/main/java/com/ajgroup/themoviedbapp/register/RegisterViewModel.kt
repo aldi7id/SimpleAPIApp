@@ -1,14 +1,13 @@
 package com.ajgroup.themoviedbapp.register
 
 import android.app.Application
-import android.util.Log
 import androidx.databinding.Observable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.ajgroup.themoviedbapp.database.RegisterEntity
-import com.ajgroup.themoviedbapp.database.RegisterRepository
+import com.ajgroup.themoviedbapp.database.entity.RegisterEntity
+import com.ajgroup.themoviedbapp.repository.RegisterRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

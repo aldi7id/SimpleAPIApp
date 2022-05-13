@@ -23,12 +23,11 @@ import androidx.navigation.fragment.NavHostFragment
 import com.ajgroup.themoviedbapp.R
 import com.ajgroup.themoviedbapp.database.DataStoreManager
 import com.ajgroup.themoviedbapp.database.RegisterDatabase
-import com.ajgroup.themoviedbapp.database.RegisterEntity
-import com.ajgroup.themoviedbapp.database.RegisterRepository
+import com.ajgroup.themoviedbapp.database.entity.RegisterEntity
+import com.ajgroup.themoviedbapp.repository.RegisterRepository
 import com.ajgroup.themoviedbapp.databinding.ProfileFragmentBinding
 import com.ajgroup.themoviedbapp.home.HomeFragmentDirections
 import com.ajgroup.themoviedbapp.utils.PermissionUtils
-import com.bumptech.glide.Glide
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

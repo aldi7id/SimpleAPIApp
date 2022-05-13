@@ -1,12 +1,9 @@
-package com.ajgroup.themoviedbapp.database
+package com.ajgroup.themoviedbapp.repository
 
-import android.content.Context
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.asLiveData
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import com.ajgroup.themoviedbapp.dao.RegisterDatabaseDao
+import com.ajgroup.themoviedbapp.database.DataStoreManager
+import com.ajgroup.themoviedbapp.database.entity.RegisterEntity
 
 
 class RegisterRepository(private val dao: RegisterDatabaseDao, private val pref: DataStoreManager) {
@@ -18,7 +15,7 @@ class RegisterRepository(private val dao: RegisterDatabaseDao, private val pref:
         return dao.updateUser(user)
     }
 
-    suspend fun getUserName(userName: String):RegisterEntity?{
+    suspend fun getUserName(userName: String): RegisterEntity?{
         return dao.getUsername(userName)
     }
 

@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.ajgroup.themoviedbapp.R
 import com.ajgroup.themoviedbapp.database.DataStoreManager
 import com.ajgroup.themoviedbapp.database.RegisterDatabase
-import com.ajgroup.themoviedbapp.database.RegisterRepository
+import com.ajgroup.themoviedbapp.repository.RegisterRepository
 import com.ajgroup.themoviedbapp.databinding.HomeFragmentBinding
 import com.ajgroup.themoviedbapp.model.GetMovieDiscovery
 import com.ajgroup.themoviedbapp.service.ApiClient

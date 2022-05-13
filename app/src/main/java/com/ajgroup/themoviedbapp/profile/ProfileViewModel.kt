@@ -3,8 +3,8 @@ package com.ajgroup.themoviedbapp.profile
 import android.app.Application
 import androidx.databinding.Observable
 import androidx.lifecycle.*
-import com.ajgroup.themoviedbapp.database.RegisterEntity
-import com.ajgroup.themoviedbapp.database.RegisterRepository
+import com.ajgroup.themoviedbapp.database.entity.RegisterEntity
+import com.ajgroup.themoviedbapp.repository.RegisterRepository
 import kotlinx.coroutines.launch
 
 class ProfileViewModel (private val repository: RegisterRepository, application: Application) :

@@ -1,13 +1,10 @@
 package com.ajgroup.themoviedbapp.login
 
 import android.app.Application
-import android.content.Context
 import android.util.Log
 import androidx.databinding.Observable
-import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.*
-import com.ajgroup.themoviedbapp.database.RegisterRepository
+import com.ajgroup.themoviedbapp.repository.RegisterRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

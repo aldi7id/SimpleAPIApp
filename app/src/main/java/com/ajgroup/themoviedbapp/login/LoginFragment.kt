@@ -1,10 +1,7 @@
 package com.ajgroup.themoviedbapp.login
 
-import android.content.Context
-import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +10,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.NavHostFragment
 import com.ajgroup.themoviedbapp.database.DataStoreManager
 import com.ajgroup.themoviedbapp.database.RegisterDatabase
-import com.ajgroup.themoviedbapp.database.RegisterRepository
+import com.ajgroup.themoviedbapp.repository.RegisterRepository
 import com.ajgroup.themoviedbapp.databinding.LoginFragmentBinding
 
 class LoginFragment : Fragment() {

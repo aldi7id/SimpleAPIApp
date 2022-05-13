@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ajgroup.themoviedbapp.database.RegisterEntity
-import com.ajgroup.themoviedbapp.database.RegisterRepository
+import com.ajgroup.themoviedbapp.database.entity.RegisterEntity
+import com.ajgroup.themoviedbapp.repository.RegisterRepository
 
 class HomeViewModel (private val repository: RegisterRepository, application: Application):AndroidViewModel(application){
     private val _homeViewModel: MutableLiveData<RegisterEntity?> = MutableLiveData()

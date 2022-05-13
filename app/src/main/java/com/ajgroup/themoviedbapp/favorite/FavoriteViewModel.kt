@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ajgroup.themoviedbapp.database.FavoriteEntity
-import com.ajgroup.themoviedbapp.database.FavoriteRepository
+import com.ajgroup.themoviedbapp.database.entity.FavoriteEntity
+import com.ajgroup.themoviedbapp.repository.FavoriteRepository
 import kotlinx.coroutines.launch
 
 class FavoriteViewModel(private val repository: FavoriteRepository) : ViewModel() {

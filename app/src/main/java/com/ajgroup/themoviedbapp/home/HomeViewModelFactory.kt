@@ -3,7 +3,7 @@ package com.ajgroup.themoviedbapp.home
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ajgroup.themoviedbapp.database.RegisterRepository
+import com.ajgroup.themoviedbapp.repository.RegisterRepository
 import java.lang.IllegalArgumentException
 
 class HomeViewModelFactory(

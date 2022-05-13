@@ -1,10 +1,11 @@
-package com.ajgroup.themoviedbapp.database
+package com.ajgroup.themoviedbapp.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import com.ajgroup.themoviedbapp.database.entity.RegisterEntity
 
 @Dao
 interface RegisterDatabaseDao {

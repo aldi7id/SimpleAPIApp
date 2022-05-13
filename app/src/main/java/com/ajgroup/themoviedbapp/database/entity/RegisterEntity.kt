@@ -1,4 +1,4 @@
-package com.ajgroup.themoviedbapp.database
+package com.ajgroup.themoviedbapp.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

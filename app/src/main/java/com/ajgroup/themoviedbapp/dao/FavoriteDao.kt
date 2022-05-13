@@ -1,6 +1,7 @@
-package com.ajgroup.themoviedbapp.database
+package com.ajgroup.themoviedbapp.dao
 
 import androidx.room.*
+import com.ajgroup.themoviedbapp.database.entity.FavoriteEntity
 
 @Dao
 interface FavoriteDao {
