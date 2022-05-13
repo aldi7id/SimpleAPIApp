@@ -1,11 +1,12 @@
 package com.ajgroup.themoviedbapp.login
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.databinding.Observable
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.*
 import com.ajgroup.themoviedbapp.database.RegisterRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -68,6 +69,7 @@ class LoginViewModel(private val repository: RegisterRepository, application: Ap
                     }
                 } else {
                     _errorToastUsername.value = true
+                    _name.value=""
                 }
             }
         }
@@ -96,6 +98,19 @@ class LoginViewModel(private val repository: RegisterRepository, application: Ap
         _errorToastInvalidPassword .value = false
         Log.i("MYTAG", "Done taoasting ")
     }
+
+    fun setEmailPreferences(email: String){
+        viewModelScope.launch {
+            repository.setEmail(email)
+        }
+    }
+    fun setNamaPreferences(nama: String){
+        viewModelScope.launch {
+            repository.setNama(nama)
+        }
+    }
+    val emailpreferences = repository.getEmail()
+
     override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
     }
 

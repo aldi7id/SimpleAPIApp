@@ -12,7 +12,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.ajgroup.themoviedbapp.R
+import com.ajgroup.themoviedbapp.database.DataStoreManager
 import com.ajgroup.themoviedbapp.database.RegisterDatabase
 import com.ajgroup.themoviedbapp.database.RegisterEntity
 import com.ajgroup.themoviedbapp.database.RegisterRepository
@@ -41,8 +44,8 @@ class ProfileFragment() : Fragment() {
         val application = requireNotNull(this.activity).application
 
         val dao = RegisterDatabase.getInstance(application).registerDatabaseDao
-
-        val repository = RegisterRepository(dao)
+        val dataStoreManager = DataStoreManager(requireContext())
+        val repository = RegisterRepository(dao,dataStoreManager)
 
         val factory = ProfileViewModelFactory(repository, application)
 
@@ -68,7 +71,12 @@ class ProfileFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedPreferences = requireContext().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        val userNameShared = sharedPreferences?.getString("user_key","")
+        var userNameShared = ""
+        profileViewModel.emailpreferences.observe(viewLifecycleOwner){
+            userNameShared = it
+            profileViewModel.getUserName(userNameShared)
+        }
+
         var userId:Int? = -1
         profileViewModel.profileViewModel.observe(viewLifecycleOwner){
             userId = it?.userId
@@ -79,9 +87,7 @@ class ProfileFragment() : Fragment() {
                 etPassword.editText?.setText(it?.passwrd)
             }
         }
-        lifecycleScope.launch(Dispatchers.IO){
-            profileViewModel.getUserName(userNameShared.toString())
-        }
+
         binding.btnSubmit.setOnClickListener {
             val firstName = binding.etFirstName.editText?.text.toString()
             val lastName = binding.etLastName.editText?.text.toString()
@@ -102,12 +108,18 @@ class ProfileFragment() : Fragment() {
                     if (update!=0){
                         Toast.makeText(context, "Save Data Berhasil", Toast.LENGTH_SHORT).show()
                     }
-                    val editor: SharedPreferences.Editor = sharedPreferences!!.edit()
-                    editor.putString("user_key", binding.etUsername.editText?.text.toString())
-                    editor.putString("name", binding.etFirstName.editText?.text.toString() + " " + binding.etLastName.editText?.text.toString() )
-                    editor.apply()
+//                    val editor: SharedPreferences.Editor = sharedPreferences!!.edit()
+//                    editor.putString("user_key", binding.etUsername.editText?.text.toString())
+//                    editor.putString("name", binding.etFirstName.editText?.text.toString() + " " + binding.etLastName.editText?.text.toString() )
+//                    editor.apply()
+
+                    profileViewModel.setEmailPreferences(binding.etUsername.editText?.text.toString())
                 }
             }
+        }
+        binding.btnLogout.setOnClickListener {
+            profileViewModel.deletePref()
+            it.findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
         }
     }
 }

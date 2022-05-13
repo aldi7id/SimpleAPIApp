@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
+import com.ajgroup.themoviedbapp.database.DataStoreManager
 import com.ajgroup.themoviedbapp.database.RegisterDatabase
 import com.ajgroup.themoviedbapp.database.RegisterRepository
 import com.ajgroup.themoviedbapp.databinding.FragmentRegisterBinding
@@ -28,8 +29,8 @@ class RegisterFragment : Fragment() {
         val application = requireNotNull(this.activity).application
 
         val dao = RegisterDatabase.getInstance(application).registerDatabaseDao
-
-        val repository = RegisterRepository(dao)
+        val dataStoreManager = DataStoreManager(requireContext())
+        val repository = RegisterRepository(dao,dataStoreManager)
 
         val factory = RegisterViewModelFactory(repository, application)
 

@@ -9,15 +9,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.ajgroup.themoviedbapp.model.Result
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.ajgroup.themoviedbapp.R
+import com.ajgroup.themoviedbapp.database.DataStoreManager
 import com.ajgroup.themoviedbapp.database.RegisterDatabase
 import com.ajgroup.themoviedbapp.database.RegisterRepository
 import com.ajgroup.themoviedbapp.databinding.HomeFragmentBinding
 import com.ajgroup.themoviedbapp.model.GetMovieDiscovery
 import com.ajgroup.themoviedbapp.service.ApiClient
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
 
@@ -43,12 +47,13 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         sharedPreferences = requireContext().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         val userNameShared = sharedPreferences?.getString("name","")
-        binding.welcome.text = getString(R.string.welcome).plus(userNameShared)
+
+
         val application = requireNotNull(this.activity).application
 
         val dao = RegisterDatabase.getInstance(application).registerDatabaseDao
-
-        val repository = RegisterRepository(dao)
+        val dataStoreManager = DataStoreManager(requireContext())
+        val repository = RegisterRepository(dao,dataStoreManager)
         val factory = HomeViewModelFactory(repository, application)
 
         homeViewModel =
@@ -65,6 +70,15 @@ class HomeFragment : Fragment() {
                 homeViewModel.doneNavigating()
             }
         }
+        homeViewModel.homeViewModel.observe(viewLifecycleOwner){
+            binding.welcome.text = getString(R.string.welcome).plus(it?.firstName).plus(" ").plus(it?.lastName)
+        }
+        homeViewModel.emailpref.observe(viewLifecycleOwner){
+            lifecycleScope.launch(Dispatchers.IO){
+                homeViewModel.getUserName(it)
+            }
+        }
+
 
         fetchAllData()
     }
