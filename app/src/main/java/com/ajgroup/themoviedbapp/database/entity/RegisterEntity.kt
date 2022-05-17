@@ -1,5 +1,6 @@
 package com.ajgroup.themoviedbapp.database.entity
 
+import android.net.Uri
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -20,5 +21,10 @@ data class RegisterEntity(
     var userName: String,
 
     @ColumnInfo(name = "password_text")
-    var passwrd: String
+    var passwrd: String,
+
+    @ColumnInfo(name = "image_path")
+    var imagePath: String?
+
+
 )

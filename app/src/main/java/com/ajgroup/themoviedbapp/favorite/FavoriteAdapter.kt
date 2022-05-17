@@ -17,7 +17,7 @@ class FavoriteAdapter(private val onClick:(FavoriteEntity)->Unit)
 
         fun bind(currentFavorite: FavoriteEntity,
                  onClick: (FavoriteEntity) -> Unit){
-
+            
             binding.apply {
                 Glide.with(binding.ivPoster)
                     .load("https://image.tmdb.org/t/p/w500"+currentFavorite.posterPath)

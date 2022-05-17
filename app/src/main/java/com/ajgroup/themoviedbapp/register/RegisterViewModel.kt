@@ -82,7 +82,7 @@ class RegisterViewModel(private val repository: RegisterRepository, application:
                         val lastName = inputLastName.value!!
                         val email = inputUsername.value!!
                         val password = inputPassword.value!!
-                        insert(RegisterEntity(0, firstName, lastName, email, password))
+                        insert(RegisterEntity(0, firstName, lastName, email, password,""))
                         inputFirstName.value = null
                         inputLastName.value = null
                         inputUsername.value = null

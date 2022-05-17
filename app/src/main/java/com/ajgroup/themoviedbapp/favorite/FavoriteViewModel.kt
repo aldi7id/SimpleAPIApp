@@ -19,4 +19,5 @@ class FavoriteViewModel(private val repository: FavoriteRepository) : ViewModel(
         }
     }
 
+
 }

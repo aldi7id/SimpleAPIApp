@@ -120,6 +120,7 @@ class ProfileFragment() : Fragment() {
                 etLastName.editText?.setText(it?.lastName)
                 etUsername.editText?.setText(it?.userName)
                 etPassword.editText?.setText(it?.passwrd)
+                ivLogo.setImageURI(imageUri)
             }
         }
 
@@ -134,7 +135,8 @@ class ProfileFragment() : Fragment() {
                 firstName,
                 lastName,
                 userName,
-                password
+                password,
+                imageUri.toString()
             )
             lifecycleScope.launch(Dispatchers.IO){
                 val update = profileViewModel.submitUpdate(updateUser)
