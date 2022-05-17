@@ -1,5 +1,8 @@
 package com.ajgroup.themoviedbapp.service
 
+import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,17 +18,29 @@ object ApiClient {
                 httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
             }
         }
-    private val client = OkHttpClient.Builder()
-        .addInterceptor(logging)
-        .build()
 
-    val instace: ApiService by lazy {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
+    fun getInstance(context: Context): ApiService {
+        val instace: ApiService by lazy {
+         val client = OkHttpClient.Builder()
+             .addInterceptor(
+                 ChuckerInterceptor.Builder(context)
+                     .collector(ChuckerCollector(context))
+                     .maxContentLength(2500000L)
+                     .redactHeaders(emptySet())
+                     .alwaysReadResponseBody(false)
+                     .build()
+             )
+            .addInterceptor(logging)
             .build()
 
-        retrofit.create(ApiService::class.java)
+            val retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+
+            retrofit.create(ApiService::class.java)
+        }
+        return instace
     }
 }

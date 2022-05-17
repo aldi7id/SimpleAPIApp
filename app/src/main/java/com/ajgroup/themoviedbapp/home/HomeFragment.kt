@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
 
 
     private fun fetchAllData() {
-       ApiClient.instace.gettDiscovery()
+       ApiClient.getInstance(requireContext()).gettDiscovery()
            .enqueue(object : retrofit2.Callback<GetMovieDiscovery>
            {
                override fun onResponse(

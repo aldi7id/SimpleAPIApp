@@ -16,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.net.toUri
 
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -120,7 +121,7 @@ class ProfileFragment() : Fragment() {
                 etLastName.editText?.setText(it?.lastName)
                 etUsername.editText?.setText(it?.userName)
                 etPassword.editText?.setText(it?.passwrd)
-                ivLogo.setImageURI(imageUri)
+                ivLogo.drawable
             }
         }
 
@@ -136,7 +137,7 @@ class ProfileFragment() : Fragment() {
                 lastName,
                 userName,
                 password,
-                imageUri.toString()
+                imageUri?.toString()
             )
             lifecycleScope.launch(Dispatchers.IO){
                 val update = profileViewModel.submitUpdate(updateUser)

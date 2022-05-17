@@ -1,6 +1,7 @@
 package com.ajgroup.themoviedbapp.detail
 
 import android.app.Application
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,7 +18,7 @@ class DetailMovieViewModel(private val repository: DetailRepository, private val
     val detailMovie: LiveData<DetailMovieResponse> = _detailMovieViewModel
 
     fun getDetailsMovie(movieId: Int){
-        ApiClient.instace.getIdMovies(movieId)
+        ApiClient.getInstance(application).getIdMovies(movieId)
             .enqueue(object : Callback<DetailMovieResponse> {
                 override fun onResponse(
                     call: Call<DetailMovieResponse>,
