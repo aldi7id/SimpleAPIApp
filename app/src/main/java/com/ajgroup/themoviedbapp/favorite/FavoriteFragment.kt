@@ -45,13 +45,17 @@ class FavoriteFragment : Fragment() {
 
         favoriteViewModel.getAllFavorites()
     }
-    private fun showFavoriteMovies(list: List<FavoriteEntity?>?) {
-        val adapter= FavoriteAdapter {
-            val action = FavoriteFragmentDirections
-                .actionFavoriteFragmentToDetailMovieFragment(it.id!!)
-            findNavController().navigate(action)
-        }
-        adapter.submitList(list)
+    private fun showFavoriteMovies(data: List<FavoriteEntity?>) {
+        val adapter  = FavoriteAdapter(object : FavoriteAdapter.OnClickListener {
+            override fun onClickItem(data: FavoriteEntity) {
+                val id = data.id
+                val actionToDetailFragment = FavoriteFragmentDirections.actionFavoriteFragmentToDetailMovieFragment(
+                    movieId = id.toString().toInt()
+                )
+                findNavController().navigate(actionToDetailFragment)
+            }
+        })
+        adapter.submitData(data)
         binding?.rvFavorite?.adapter = adapter
     }
 
