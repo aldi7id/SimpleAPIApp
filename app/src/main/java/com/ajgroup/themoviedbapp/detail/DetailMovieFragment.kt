@@ -16,12 +16,15 @@ import com.ajgroup.themoviedbapp.databinding.DetailMovieFragmentBinding
 import com.ajgroup.themoviedbapp.favorite.FavoriteViewModelFactory
 import com.ajgroup.themoviedbapp.repository.DetailRepository
 import com.ajgroup.themoviedbapp.repository.FavoriteRepository
+import com.ajgroup.themoviedbapp.service.ApiClient
 import com.ajgroup.themoviedbapp.service.ApiService
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.detail_movie_fragment.*
 import kotlinx.android.synthetic.main.home_fragment.*
+import kotlinx.android.synthetic.main.list_favorite.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class DetailMovieFragment : Fragment() {
     private lateinit var detailMovieViewModel: DetailMovieViewModel
@@ -43,43 +46,11 @@ class DetailMovieFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val application = requireNotNull(this.activity).application
         val dao = RegisterDatabase.getInstance(application).favoriteDao
-        val repository = DetailRepository(dao)
+        val repository = DetailRepository(apiService = ApiClient.getInstance(requireContext()) , dao)
         val factory = DetailMovieVideModelFactory(repository,application)
         detailMovieViewModel =
             ViewModelProvider(this, factory).get(DetailMovieViewModel::class.java)
         val movieId = args.movieId
-        binding.ivFavorite.setOnClickListener {
-
-            lifecycleScope.launch(Dispatchers.IO){
-                val isFavorite = detailMovieViewModel.getFavoriteById(movieId)
-
-                activity?.runOnUiThread {
-
-                    if (isFavorite == null){
-                        val newFavorite = FavoriteEntity(
-                            id = it.id,
-                            overview = "",
-                            posterPath = "",
-                            title = "",
-                            voteAverage = 0.0)
-                        lifecycleScope.launch(Dispatchers.IO){
-                            detailMovieViewModel.addToFavorite(newFavorite)
-                        }
-
-                        detailMovieViewModel.changeFavorite(true)
-
-
-
-                    }else{
-                        lifecycleScope.launch(Dispatchers.IO){
-                            detailMovieViewModel.removeFromFavorite(isFavorite)
-                        }
-
-                        detailMovieViewModel.changeFavorite(false)
-                    }
-                }
-            }
-        }
 
         detailMovieViewModel.detailMovie.observe(viewLifecycleOwner){
             binding.apply {
@@ -94,6 +65,45 @@ class DetailMovieFragment : Fragment() {
             Toast.makeText(context, getString(R.string.success_load), Toast.LENGTH_SHORT).show()
         }
         detailMovieViewModel.getDetailsMovie(movieId)
+        binding.ivFavorite.setOnClickListener {_ ->
+            lifecycleScope.launch(Dispatchers.IO){
+                val isFavorite = detailMovieViewModel.getFavoriteById(movieId)
+                activity?.runOnUiThread {
+                    if (isFavorite == null){
+                        val newFavorite = FavoriteEntity(
+                            id = id,
+                        overview = id.toString(),
+                        posterPath = id.toString(),
+                        voteAverage = id.toDouble())
+                        lifecycleScope.launch(Dispatchers.IO){
+                            detailMovieViewModel.addToFavorite(newFavorite)
+                            runBlocking(Dispatchers.Main) {
+                                Toast.makeText(
+                                    context,
+                                    "Movie ditambahkan ke favorit!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                        detailMovieViewModel.changeFavorite(true)
+                    }else{
+                        lifecycleScope.launch(Dispatchers.IO){
+                            detailMovieViewModel.removeFromFavorite(isFavorite)
+                            runBlocking(Dispatchers.Main) {
+                                Toast.makeText(
+                                    context,
+                                    "Movie dihapus ke favorit!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                        detailMovieViewModel.changeFavorite(false)
+                    }
+                }
+            }
+        }
     }
+
+
 
 }

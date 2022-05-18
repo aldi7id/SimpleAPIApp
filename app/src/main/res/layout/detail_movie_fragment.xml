@@ -24,7 +24,7 @@
         android:src="@mipmap/ic_launcher"
         android:layout_gravity="center"
         android:contentDescription="@string/todo" />
-        <ImageView
+        <ImageButton
             android:id="@+id/iv_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
