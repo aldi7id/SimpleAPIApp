@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheMovieDBApp">
         <activity
-            android:name=".ScreenLoading"
+            android:name=".ui.ScreenLoading"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
         </activity>
     </application>
