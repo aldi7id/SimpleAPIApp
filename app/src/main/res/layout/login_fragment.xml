@@ -7,7 +7,7 @@
     <data>
         <variable
             name="myLoginViewModel"
-            type="com.ajgroup.themoviedbapp.login.LoginViewModel" />
+            type="com.ajgroup.themoviedbapp.ui.login.LoginViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

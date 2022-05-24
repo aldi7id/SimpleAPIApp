@@ -6,7 +6,7 @@
     <data>
         <variable
             name="myViewModel"
-            type="com.ajgroup.themoviedbapp.register.RegisterViewModel" />
+            type="com.ajgroup.themoviedbapp.ui.register.RegisterViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

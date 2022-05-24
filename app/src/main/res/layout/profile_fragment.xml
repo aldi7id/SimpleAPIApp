@@ -6,7 +6,7 @@
     <data>
         <variable
             name="myViewModel"
-            type="com.ajgroup.themoviedbapp.profile.ProfileViewModel" />
+            type="com.ajgroup.themoviedbapp.ui.profile.ProfileViewModel" />
     </data>
 <ScrollView
     android:layout_width="match_parent"

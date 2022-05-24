@@ -8,7 +8,7 @@
     <data>
         <variable
             name="homeLayout"
-            type="com.ajgroup.themoviedbapp.home.HomeViewModel" />
+            type="com.ajgroup.themoviedbapp.ui.home.HomeViewModel" />
     </data>
 
     <LinearLayout
